@@ -2,7 +2,7 @@ import { useState } from "react";
 
 const signupAPI = `https://fsa-jwt-practice.herokuapp.com/signup`;
 
-function SignUpForm({setToken}) {
+function SignUpForm({ setToken }) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState(null);
@@ -10,16 +10,15 @@ function SignUpForm({setToken}) {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch(`${signupAPI}`,
-      {
+      const response = await fetch(`${signupAPI}`, {
         method: "POST",
         headers: {
-            "Content-Type": "application/json"
+          "Content-Type": "application/json",
         },
         body: JSON.stringify({
-            username: {username},
-            password: {password}
-        })
+          username: { username },
+          password: { password },
+        }),
       });
       const result = await response.json();
       console.log(result);
@@ -30,7 +29,7 @@ function SignUpForm({setToken}) {
   };
   return (
     <form onSubmit={handleSubmit}>
-      <h2>Sign Up!</h2> 
+      <h2>Sign Up!</h2>
       {error && <p>{error}</p>}
       <label>
         Username:{" "}
